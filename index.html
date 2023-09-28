@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CDN VueJs  -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.css' integrity='sha512-bR79Bg78Wmn33N5nvkEyg66hNg+xF/Q8NA8YABbj+4sBngYhv9P8eum19hdjYcY7vXk/vRkhM3v/ZndtgEXRWw==' crossorigin='anonymous'/>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Vue Hello</title>
+</head>
+<body>
+
+  <!-- elemento sul quale viene montato Vue  -->
+  <div id="app">
+    <div class="container my-5">
+        <h1>{{ titolo }}</h1>
+        <button @click="showSubtitle = !showSubtitle" class="btn btn-primary">toggle sottotitolo</button>
+        <!-- v-if="condizione" -> se la condizione è vera mostra il tag  -->
+        <h2 v-if="showSubtitle" >Questo è il sottotitolo con v-if</h2>
+        <!-- il v-else deve essere consicutivo al v-if  -->
+        <h2 v-else>Questo è il sottotitolo secondario (v-else)</h2>
+        <!-- v-show si comporta come v-if solo che per nascondere l'elemento aggiunge display:none e il tag è sempre presente e non può avere un v-else -->
+        <h2 v-show="showSubtitle" >Questo è il sottotitolo con v-show</h2>
+
+        <h3 v-if="numero_1 > numero_2">numero_1 è maggiore di numero_2</h3>
+        <h3 v-else-if="numero_1 < numero_2">numero_1 è minore di numero_2</h3>
+        <h3 v-else>numero_1 e numero_2 sono uguali</h3>
+
+    </div>
+
+    <div class="container my-5">
+      <p v-if="!isLoaded">Loading.....</p>
+      <p v-else>PAGINA CARICATA Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam tempore praesentium exercitationem alias veritatis nemo libero mollitia, enim velit dolorum earum quas ut ipsam voluptatum cumque adipisci ex totam eaque.</p>
+    </div>
+
+    <div class="container my-5">
+      <button @click="popColor" class="btn btn-primary my-1">elimina colore</button> <br>
+      <input
+        v-model="nuovoColore"
+        @keyup.enter="pushColor"
+        placeholder="aggiungi colore"
+        type="text"
+      >
+      <ul>
+        <li v-for="colore in colori">{{ colore }}</li>
+      </ul>
+    </div>
+
+    <div class="container my-5">
+      <ul>
+        <li
+          v-for="i in 20"
+          :class="[{'rosso': (i % 2) === 0}]" 
+        >{{ i }}</li>
+      </ul>
+    </div>
+  </div>
+
+  
+  
+  <script src="js/script.js"></script>
+</body>
+</html>
